@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+.input {
+  width: 506px;
+  border: 1px solid #fe2596;
+  margin: 0 0 16px;
+}
+.CodeMirror {
+  font-family: 'Fira Code';
+  font-size: 14px;
+}
+.viewport {
+  background: #fe2596;
+  padding: 12px;
+  width: 506px;
+  height: 253px;
+  display: flex;
+}
+pre {
+  margin: 0;
+  background: #1B202D;
+  border-radius: 5px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+code {
+  padding: 16px;
+  font-family: 'Fira Code';
+  font-size: 14px;
+}
+
+
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+}
+
+.hljs,
+.hljs-tag,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2;
+}
+
+.hljs-bullet,
+.hljs-quote,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal,
+.hljs-link {
+  color: #ae81ff;
+}
+
+.hljs-code,
+.hljs-title,
+.hljs-section,
+.hljs-selector-class {
+  color: #a6e22e;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-attr {
+  color: #f92672;
+}
+
+.hljs-name {
+  color: #40e3f9;
+}
+
+.hljs-attribute {
+  color: #66d9ef;
+}
+
+.hljs-symbol {
+  color: #f1b721;
+}
+
+.hljs-params,
+.hljs-class .hljs-title {
+  color: #f8f8f2;
+}
+
+.hljs-type,
+.hljs-built_in,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable {
+  color: #e6db74;
+}
+
+.hljs-string {
+  color: #8dd678;
+  font-style: italic;
+}
+
+.hljs-builtin-name {
+  color: #f92672;
+}
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}

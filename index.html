@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cool Code</title>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css">
+  <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="main.js"></script>
+  <script src="https://codemirror.net/lib/codemirror.js"></script>
+  <script src="https://codemirror.net/mode/clojure/clojure.js"></script>
+  <script src="https://shaunlebron.github.io/parinfer/codemirror/mode/clojure/clojure-parinfer.js"></script>
+  <script src="https://shaunlebron.github.io/parinfer/codemirror/addon/selection/active-line.js"></script>
+  <script src="https://shaunlebron.github.io/parinfer/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="https://shaunlebron.github.io/parinfer/parinfer.js"></script>
+  <script src="https://shaunlebron.github.io/parinfer/js/lib/parinfer-codemirror.js"></script>
+</head>
+<body>
+  
+  <div class="input"></div>
+  
+  <div class="viewport"><pre><code class="clojure display-code"></code></pre></div>
+  
+  <script>
+    const input = document.querySelector('.input');
+    const code = document.querySelector('.display-code');
+    
+    var cm = CodeMirror(input);
+    parinferCodeMirror.init(cm);
+    
+    cm.on('change', cm => {
+      code.textContent = cm.getValue();
+      hljs.highlightBlock(code);
+    });
+  </script>
+
+  
+</body>
+</html>
