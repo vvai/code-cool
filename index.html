@@ -17,24 +17,29 @@
   <script src="https://shaunlebron.github.io/parinfer/js/lib/parinfer-codemirror.js"></script>
 </head>
 <body>
-  
-  <div class="input"></div>
-  
-  <div class="viewport"><pre><code class="clojure display-code"></code></pre></div>
-  
-  <script>
-    const input = document.querySelector('.input');
-    const code = document.querySelector('.display-code');
-    
-    var cm = CodeMirror(input);
-    parinferCodeMirror.init(cm);
-    
-    cm.on('change', cm => {
-      code.textContent = cm.getValue();
-      hljs.highlightBlock(code);
-    });
-  </script>
 
-  
+  <h1>😎 Code Cool 😎</h1>
+
+  <div class="input"></div>
+
+  <div class="config">
+    <div class="field cfg-border">
+      <label for="">Border:</label>
+      <input type="color">
+    </div>
+    <div class="field cfg-bg">
+      <label for="">Background:</label>
+      <input type="color">
+    </div>
+    <div class="field cfg-fsize">
+      <label for="">Font Size:</label>
+      <input type="number">
+    </div>
+  </div>
+
+  <div class="viewport"><pre><code class="clojure display-code"></code></pre></div>
+
+  <script src="app.js"></script>
+
 </body>
 </html>
