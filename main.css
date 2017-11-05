@@ -4,10 +4,6 @@
 
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background: #fafafa;
   font: normal 14px 'Fira Code', sans-serif;
@@ -16,17 +12,23 @@ body {
 h1 {
   color: #fe2596;
   font-size: 42px;
+  text-align: center;
 }
 
 input[type="number"] {
   width: 60px;
 }
 
+.wrap {
+  width: 506px;
+  margin: 0 auto;
+}
+
 .config {
   display: flex;
   justify-content: space-between;
   width: 506px;
-  padding: 8px 0;
+  margin: 8px 0;
 }
 
 .input {
@@ -39,25 +41,32 @@ input[type="number"] {
   font-size: 14px;
 }
 .viewport {
-  background: #fe2596;
-  padding: 12px;
-  width: 506px;
-  height: 253px;
-  display: flex;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-}
-.viewport > pre {
   margin: 0;
   background: #1B202D;
-  border-radius: 5px;
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  width: 506px;
+  height: 253px;
 }
 .display-code {
   padding: 16px;
   font-family: 'Fira Code';
+  font-size: 14px;
+}
+
+.bottom {
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+}
+.btn.export {
+  background: #fe2596;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 5px;
+  border: none;
   font-size: 14px;
 }
 

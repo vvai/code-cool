@@ -55,7 +55,6 @@ Controller.of = name => new Controller(name);
 // =====
 
 const state = Atom.of({
-  border: '#fe2596',
   background: '#1B202D',
   fontSize: 14
 });
@@ -74,23 +73,20 @@ const dispatch = (() => {
 
 const input = document.querySelector('.input');
 const code = document.querySelector('.display-code');
+const exportBtn = document.querySelector('.btn.export');
 
-const borderColor = document.querySelector('.cfg-border input');
 const bgColor = document.querySelector('.cfg-bg input');
 const fSize = document.querySelector('.cfg-fsize input');
 
-const viewport = document.querySelector('.viewport');
-const codePre = document.querySelector('.viewport > pre');
+const codePre = document.querySelector('.viewport');
 
 configController.addMethod('set-config', ([config], state) => {
   const nextState = { ...state, ...config };
-  const { background, border, fontSize } = nextState;
+  const { background, fontSize } = nextState;
 
-  borderColor.value = border;
   bgColor.value = background;
   fSize.value = fontSize;
 
-  viewport.style.background = border;
   codePre.style.background = background;
   code.style.fontSize = `${fontSize}px`;
 
@@ -99,10 +95,6 @@ configController.addMethod('set-config', ([config], state) => {
 
 dispatch('config', 'set-config');
 
-borderColor.addEventListener('change', () => {
-  dispatch('config', 'set-config', { border: borderColor.value });
-});
-
 bgColor.addEventListener('change', () => {
   dispatch('config', 'set-config', { background: bgColor.value });
 });
@@ -110,6 +102,29 @@ bgColor.addEventListener('change', () => {
 fSize.addEventListener('change', () => {
   dispatch('config', 'set-config', { fontSize: fSize.value });
 });
+
+exportBtn.addEventListener('click', () => {
+  domtoimage
+    .toPng(codePre, {
+      style: {
+        transform: `scale(${devicePixelRatio})`,
+        'transform-origin': 'center'
+      },
+      width: codePre.clientWidth * devicePixelRatio,
+      height: codePre.clientHeight * devicePixelRatio
+    })
+    .then(exportImage)
+    .catch(console.error);
+});
+
+function exportImage(dataurl) {
+  const link = document.createElement('a');
+  link.download = 'code-cool.png';
+  link.href = dataurl;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
 
 var cm = CodeMirror(input);
 parinferCodeMirror.init(cm);

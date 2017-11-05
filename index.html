@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Cool Code</title>
+  <title>Code Cool — Code snippets screenshots</title>
   <link rel="stylesheet" href="https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css">
   <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css">
   <link rel="stylesheet" href="main.css">
   <script src="main.js"></script>
+  <script src="dom-to-image.js"></script>
   <script src="https://codemirror.net/lib/codemirror.js"></script>
   <script src="https://codemirror.net/mode/clojure/clojure.js"></script>
   <script src="https://shaunlebron.github.io/parinfer/codemirror/mode/clojure/clojure-parinfer.js"></script>
@@ -18,26 +19,28 @@
 </head>
 <body>
 
-  <h1>😎 Code Cool 😎</h1>
+  <div class="wrap">
+    <h1>😎 Code Cool 😎</h1>
 
-  <div class="input"></div>
+    <div class="input"></div>
 
-  <div class="config">
-    <div class="field cfg-border">
-      <label for="">Border:</label>
-      <input type="color">
+    <div class="config">
+      <div class="field cfg-bg">
+        <label for="">Background:</label>
+        <input type="color">
+      </div>
+      <div class="field cfg-fsize">
+        <label for="">Font Size:</label>
+        <input type="number">
+      </div>
     </div>
-    <div class="field cfg-bg">
-      <label for="">Background:</label>
-      <input type="color">
-    </div>
-    <div class="field cfg-fsize">
-      <label for="">Font Size:</label>
-      <input type="number">
+
+    <pre class="viewport"><code class="clojure display-code"></code></pre>
+
+    <div class="bottom">
+      <button class="btn export">Export Image</button>
     </div>
   </div>
-
-  <div class="viewport"><pre><code class="clojure display-code"></code></pre></div>
 
   <script src="app.js"></script>
 
