@@ -55,11 +55,11 @@ Controller.of = name => new Controller(name);
 // =====
 
 const state = Atom.of({
-  background: '#1B202D',
+  background: "#1B202D",
   fontSize: 14
 });
 
-const configController = Controller.of('config');
+const configController = Controller.of("config");
 
 const dispatch = (() => {
   const dispatcher = Dispacther.of(
@@ -71,16 +71,16 @@ const dispatch = (() => {
   return dispatcher.dispatch.bind(dispatcher);
 })();
 
-const input = document.querySelector('.input');
-const code = document.querySelector('.display-code');
-const exportBtn = document.querySelector('.btn.export');
+const input = document.querySelector(".input");
+const code = document.querySelector(".display-code");
+const exportBtn = document.querySelector(".btn.export");
 
-const bgColor = document.querySelector('.cfg-bg input');
-const fSize = document.querySelector('.cfg-fsize input');
+const bgColor = document.querySelector(".cfg-bg input");
+const fSize = document.querySelector(".cfg-fsize input");
 
-const codePre = document.querySelector('.viewport');
+const codePre = document.querySelector(".viewport");
 
-configController.addMethod('set-config', ([config], state) => {
+configController.addMethod("set-config", ([config], state) => {
   const nextState = { ...state, ...config };
   const { background, fontSize } = nextState;
 
@@ -93,22 +93,22 @@ configController.addMethod('set-config', ([config], state) => {
   return nextState;
 });
 
-dispatch('config', 'set-config');
+dispatch("config", "set-config");
 
-bgColor.addEventListener('change', () => {
-  dispatch('config', 'set-config', { background: bgColor.value });
+bgColor.addEventListener("change", () => {
+  dispatch("config", "set-config", { background: bgColor.value });
 });
 
-fSize.addEventListener('change', () => {
-  dispatch('config', 'set-config', { fontSize: fSize.value });
+fSize.addEventListener("change", () => {
+  dispatch("config", "set-config", { fontSize: fSize.value });
 });
 
-exportBtn.addEventListener('click', () => {
+exportBtn.addEventListener("click", () => {
   domtoimage
     .toPng(codePre, {
       style: {
         transform: `scale(${devicePixelRatio})`,
-        'transform-origin': 'center'
+        "transform-origin": "center"
       },
       width: codePre.clientWidth * devicePixelRatio,
       height: codePre.clientHeight * devicePixelRatio
@@ -118,25 +118,31 @@ exportBtn.addEventListener('click', () => {
 });
 
 function exportImage(dataurl) {
-  const link = document.createElement('a');
-  link.download = 'code-cool.png';
+  const link = document.createElement("a");
+  link.download = "code-cool.png";
   link.href = dataurl;
   document.body.appendChild(link);
   link.click();
   link.remove();
 }
 
-var cm = CodeMirror(input);
-parinferCodeMirror.init(cm);
+var cm = CodeMirror(input, {
+  mode: "javascript"
+});
 
-const value = localStorage.getItem('code-cool') || '';
+const value = localStorage.getItem("code-cool") || "";
 cm.setValue(value);
 code.textContent = value;
 hljs.highlightBlock(code);
 
-cm.on('change', cm => {
+if (code.classList.contains("clojure")) {
+  cm.setOption("mode", "clojure");
+  parinferCodeMirror.init(cm);
+}
+
+cm.on("change", cm => {
   const value = cm.getValue();
-  localStorage.setItem('code-cool', value);
+  localStorage.setItem("code-cool", value);
   code.textContent = value;
   hljs.highlightBlock(code);
 });
