@@ -1,18 +1,29 @@
-html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
-	background: #FAFAFA;
-	font-family: 'Helvetica Neue', arial, sans-serif;
-	font-weight: 400;
-	color: #444;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Fira Code";
+  src: url("/assets/fonts/FiraCode-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("/assets/fonts/FiraCode-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  background: #fafafa;
+  font: normal 14px "Fira Code", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* copy pasted styles */
@@ -44,12 +55,12 @@ input[type="number"] {
   margin: 0 0 16px;
 }
 .CodeMirror {
-  font-family: 'Fira Code';
+  font-family: "Fira Code";
   font-size: 14px;
 }
 .viewport {
   margin: 0;
-  background: #1B202D;
+  background: #1b202d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +70,7 @@ input[type="number"] {
 }
 .display-code {
   padding: 16px;
-  font-family: 'Fira Code';
+  font-family: "Fira Code";
   font-size: 14px;
 }
 
@@ -76,8 +87,6 @@ input[type="number"] {
   border: none;
   font-size: 14px;
 }
-
-
 
 .hljs {
   display: block;
