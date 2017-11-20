@@ -1,14 +1,21 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #FAFAFA;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  background: #fafafa;
-  font: normal 14px 'Fira Code', sans-serif;
-}
-
+/* copy pasted styles */
 h1 {
   color: #fe2596;
   font-size: 42px;
