@@ -1,21 +1,41 @@
 import { h, Component } from 'preact';
-import codeMirror from 'codemirror';
-import parinfer from 'parinfer';
-import parinferCodeMirror from 'parinfer-codemirror';
+import CodeMirror from 'react-codemirror';
+
+require('codemirror/mode/clojure/clojure');
+require('codemirror/mode/css/css');
+require('codemirror/mode/elm/elm');
+require('codemirror/mode/erlang/erlang');
+require('codemirror/mode/go/go');
+require('codemirror/mode/haskell/haskell');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/jsx/jsx');
+require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/php/php');
+require('codemirror/mode/python/python');
+require('codemirror/mode/ruby/ruby');
+require('codemirror/mode/rust/rust');
+require('codemirror/mode/sql/sql');
+require('codemirror/mode/swift/swift');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/clike/clike');
+require('codemirror/mode/shell/shell');
 
 export default class CodeEditor extends Component {
 
-	componentDidMount() {
-		const cm = codeMirror(this.codeEditor);
-		parinferCodeMirror.init(cm);
-		cm.setValue(this.props.value);
-
-		cm.on('change', cm => {
-			this.props.onChange(cm.getValue());
-		});
+	codeUpdated = (value) => {
+		this.props.onChange(value);
 	}
 
 	render() {
-		return <div ref={(editor) => { this.codeEditor = editor; }} class="input" />;
+		let language = this.props.language;
+		if (language === 'java' || language === 'cs' || language === 'cpp') {
+			language = 'clike';
+		}
+		const options = {
+			lineNumbers: true,
+			matchBrackets: true,
+			mode: language
+		}
+		return <CodeMirror className="input" value={this.props.value} onChange={this.codeUpdated} options={options} />
 	}
 }

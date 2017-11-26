@@ -5,6 +5,30 @@ import ConfigPanel from './configPanel';
 import CodeEditor from './codeEditor';
 import ScreenshotPreview from './screenshotPreview';
 
+const languages = [
+	{ label: '--language--', value: ''},
+	{ label: 'Clojure', value: 'clojure'},
+	{ label: 'CSS', value: 'css'},
+	{ label: 'Elm', value: 'elm'},
+	{ label: 'Erlang', value: 'erlang'},
+	{ label: 'Go', value: 'go'},
+	{ label: 'Haskell', value: 'haskell'},
+	{ label: 'JavaScript', value: 'javascript'},
+	{ label: 'jsx', value: 'jsx'},
+	{ label: 'Markdown', value: 'markdown'},
+	{ label: 'PHP', value: 'php'},
+	{ label: 'Python', value: 'python'},
+	{ label: 'Ruby', value: 'ruby'},
+	{ label: 'Rust', value: 'rust'},
+	{ label: 'SQL', value: 'sql'},
+	{ label: 'Swift', value: 'swift'},
+	{ label: 'HTML/XML', value: 'xml'},
+	{ label: 'Shell', value: 'shell'},
+	{ label: 'Java', value: 'java'},
+	{ label: 'C#', value: 'cs'},
+	{ label: 'C++', value: 'cpp'}
+]
+
 export default class App extends Component {
 
 	constructor(props) {
@@ -13,7 +37,9 @@ export default class App extends Component {
 		this.state = {
 			background: '#1B202D',
 			fontSize: 14,
-			codeText
+			currentLanguage: '',
+			codeText,
+			languages
 		};
 	}
 
@@ -54,17 +80,27 @@ export default class App extends Component {
 		this.setState((state) => ({ ...state, fontSize }));
 	}
 
+	setLanguage = (language) => {
+		this.setState((state) => ({ ...state, currentLanguage: language }));
+	}
+
 	render() {
 		return (
 			<div class="wrap">
 				<h1>😎 Code Cool 😎</h1>
 
-				<CodeEditor value={this.state.codeText} onChange={this.changeCodeSnippet} />
+				<CodeEditor 
+					value={this.state.codeText} 
+					language={this.state.currentLanguage} 
+					onChange={this.changeCodeSnippet} />
 				<ConfigPanel
 					background={this.state.background}
 					fontSize={this.state.fontSize}
 					onChangeBackground={this.setBackground}
 					onChangeFontSize={this.setFontSize}
+					onChangeLanguage={this.setLanguage}
+					languages={this.state.languages}
+					currentLanguage={this.state.currentLanguage}
 				/>
 
 				<ScreenshotPreview
@@ -72,6 +108,9 @@ export default class App extends Component {
 					value={this.state.codeText}
 					background={this.state.background}
 					fontSize={this.state.fontSize}
+					onChangeLanguage={this.setLanguage}
+					languages={this.state.languages}
+					currentLanguage={this.state.currentLanguage}
 				/>
 
 				<div class="bottom">
